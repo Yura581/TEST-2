@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品展示网站</title>
+    <meta name="description" content="专业商品展示网站，提供优质产品和服务">
+    <meta name="keywords" content="商品展示,产品目录,在线商城">
+    
+    <!-- SEO优化 -->
+    <meta property="og:title" content="商品展示网站">
+    <meta property="og:description" content="专业商品展示网站，提供优质产品和服务">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* 首页样式 */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-banner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-banner img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* 推荐商品区域 */
+        .featured-products {
+            padding: 4rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 筛选和搜索区域 */
+        .filters-section {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 20px;
+            outline: none;
+            background: white;
+        }
+
+        /* 社媒链接 */
+        .social-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* FAQ页面 */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+            line-height: 1.8;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+
+            .filter-options {
+                justify-content: center;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+        /* 隐藏页面 */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover,
+        .pagination button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">商品展示</a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">首页</a></li>
+                <li><a href="#" class="nav-link" data-page="products">所有商品</a></li>
+                <li><a href="#" class="nav-link" data-page="faq">常见问题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- 首页 -->
+        <div id="home" class="page active">
+            <!-- Hero区域 -->
+            <section class="hero-section">
+                <div class="hero-banner">
+                    <!-- 替换为你的banner图片URL -->
+                    <img src="https://via.placeholder.com/1200x400/667eea/ffffff?text=欢迎来到我们的商品展示网站" alt="网站横幅">
+                    <div class="hero-content">
+                        <h1>优质商品展示</h1>
+                        <p>发现优质产品，享受优质服务</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 推荐商品 -->
+            <section class="featured-products">
+                <h2 class="section-title">推荐商品</h2>
+                <div class="products-grid" id="featured-grid">
+                    <div class="loading">正在加载推荐商品...</div>
+                </div>
+            </section>
+
+            <!-- 社媒区域 -->
+            <section class="social-section">
+                <h2>关注我们</h2>
+                <p>获取最新产品信息和优惠活动</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘 Facebook</a>
+                    <a href="#" class="social-link">📷 Instagram</a>
+                    <a href="#" class="social-link">🐦 Twitter</a>
+                    <a href="#" class="social-link">📺 YouTube</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- 所有商品页面 -->
+        <div id="products" class="page">
+            <!-- 筛选区域 -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <div class="search-bar">
+                        <input type="text" class="search-input" id="search-input" placeholder="搜索商品名称、关键词...">
+                        <button class="search-btn" onclick="searchProducts()">搜索</button>
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-group">
+                            <label>分类:</label>
+                            <select class="filter-select" id="category-filter">
+                                <option value="">所有分类</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>价格:</label>
+                            <select class="filter-select" id="price-filter">
+                                <option value="">所有价格</option>
+                                <option value="0-100">¥0 - ¥100</option>
+                                <option value="100-500">¥100 - ¥500</option>
+                                <option value="500-1000">¥500 - ¥1000</option>
+                                <option value="1000+">¥1000+</option>
+                            </select>
+                        </div>
+                        <button class="search-btn" onclick="applyFilters()">应用筛选</button>
+                        <button class="btn-secondary" onclick="clearFilters()">清除筛选</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 商品展示区域 -->
+            <section class="featured-products">
+                <div class="products-grid" id="products-grid">
+                    <div class="loading">正在加载商品数据...</div>
+                </div>
+                
+                <!-- 分页 -->
+                <div class="pagination" id="pagination">
+                    <button id="prev-btn" onclick="changePage(-1)">上一页</button>
+                    <span id="page-info">第 1 页 / 共 1 页</span>
+                    <button id="next-btn" onclick="changePage(1)">下一页</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- FAQ页面 -->
+        <div id="faq" class="page">
+            <section class="faq-section">
+                <h1 class="section-title">常见问题</h1>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        如何查看商品详情？
+                    </div>
+                    <div class="faq-answer">
+                        您可以点击商品卡片上的查看详情按钮，或者点击商品图片来查看详细信息。每个商品都有详细的描述、规格和高清图片。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        如何搜索特定商品？
+                    </div>
+                    <div class="faq-answer">
+                        在所有商品页面顶部有搜索框，您可以输入商品名称、关键词或品牌名称进行搜索。同时也可以使用分类和价格筛选来缩小搜索范围。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        商品信息多久更新一次？
+                    </div>
+                    <div class="faq-answer">
+                        我们的商品信息会实时更新。价格、库存状态和商品详情都会及时同步，确保您看到的信息是最新的。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        如何联系客服？
+                    </div>
+                    <div class="faq-answer">
+                        您可以通过页面底部的社交媒体链接联系我们，或者发送邮件至 support@example.com。我们会在24小时内回复您的询问。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        网站支持移动设备吗？
+                    </div>
+                    <div class="faq-answer">
+                        是的，我们的网站完全支持移动设备，包括手机和平板电脑。网站会自动适配您的设备屏幕，提供最佳的浏览体验。
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2025 商品展示网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        // 全局变量
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentPage = 1;
+        const productsPerPage = 12;
+
+        // Google Sheets配置 - 请替换为你的实际配置
+        const SHEET_CONFIG = {
+            // 替换为你的Google Sheets共享链接中的ID
+            spreadsheetId: '1JSX1cuV04tSnCo2xXESSx3re2MrkvyU7q4aUZAZcv3Q',
+            // 替换为你的工作表名称
+            sheetName: 'Products',
+            // Google Sheets API密钥（可选，用于更好的访问控制）
+            apiKey: 'YOUR_API_KEY'
+        };
+
+        // 页面导航
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新导航状态
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 导航点击事件
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // 从Google Sheets获取数据
+        async function fetchProductsFromSheets() {
+            try {
+                // 方法1: 使用Google Sheets公开CSV导出
+                const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.spreadsheetId}/export?format=csv&gid=0`;
+                
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                
+                // 解析CSV数据
+                const lines = csvText.split('\n');
+                const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+                
+                const products = [];
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim()) {
+                        const values = lines[i].split(',').map(v => v.replace(/"/g, '').trim());
+                        const product = {};
+                        headers.forEach((header, index) => {
+                            product[header] = values[index] || '';
+                        });
+                        
+                        // 确保必要字段存在
+                        if (product.title && product.price) {
+                            products.push({
+                                id: product.id || i,
+                                title: product.title,
+                                price: parseFloat(product.price) || 0,
+                                category: product.category || '未分类',
+                                image: product.image || 'https://via.placeholder.com/300x250/667eea/ffffff?text=商品图片',
+                                link1: product.link1 || '#',
+                                link1Text: product.link1Text || '查看详情',
+                                link2: product.link2 || '#',
+                                link2Text: product.link2Text || '立即购买',
+                                featured: product.featured === 'TRUE' || product.featured === '1'
+                            });
+                        }
+                    }
+                }
+                
+                return products;
+                
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                
+                // 返回示例数据作为fallback
+                return generateSampleProducts();
+            }
+        }
+
+        // 生成示例数据（用于演示）
+        function generateSampleProducts() {
+            const categories = ['电子产品', '服装配饰', '家居用品', '运动户外', '美妆护肤'];
+            const products = [];
+            
+            for (let i = 1; i <= 50; i++) {
+                const category = categories[Math.floor(Math.random() * categories.length)];
+                const price = Math.floor(Math.random() * 1000) + 50;
+                
+                products.push({
+                    id: i,
+                    title: `精选商品 ${i} - ${category}`,
+                    price: price,
+                    category: category,
+                    image: `https://via.placeholder.com/300x250/667eea/ffffff?text=商品${i}`,
+                    link1: `#product-${i}-detail`,
+                    link1Text: '查看详情',
+                    link2: `#product-${i}-buy`,
+                    link2Text: '立即购买',
+                    featured: Math.random() < 0.3 // 30%概率成为推荐商品
+                });
+            }
+            
+            return products;
+        }
+
+        // 渲染商品卡片
+        function renderProductCard(product) {
+            return `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">¥${product.price.toFixed(2)}</div>
+                        <div class="product-buttons">
+                            <a href="${product.link1}" class="btn btn-primary" target="_blank">${product.link1Text}</a>
+                            <a href="${product.link2}" class="btn btn-secondary" target="_blank">${product.link2Text}</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 渲染推荐商品
+        function renderFeaturedProducts() {
+            const featuredProducts = allProducts.filter(product => product.featured).slice(0, 6);
+            const grid = document.getElementById('featured-grid');
+            
+            if (featuredProducts.length === 0) {
+                // 如果没有推荐商品，显示前6个
+                const fallbackProducts = allProducts.slice(0, 6);
+                grid.innerHTML = fallbackProducts.map(renderProductCard).join('');
+            } else {
+                grid.innerHTML = featuredProducts.map(renderProductCard).join('');
+            }
+        }
+
+        // 渲染所有商品
+        function renderAllProducts() {
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const pageProducts = filteredProducts.slice(startIndex, endIndex);
+            
+            const grid = document.getElementById('products-grid');
+            if (pageProducts.length === 0) {
+                grid.innerHTML = '<div class="loading">没有找到匹配的商品</div>';
+                return;
+            }
+            
+            grid.innerHTML = pageProducts.map(renderProductCard).join('');
+            
+            // 更新分页信息
+            updatePagination();
+        }
+
+        // 更新分页
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const pageInfo = document.getElementById('page-info');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            pageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+        }
+
+        // 翻页
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            const newPage = currentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderAllProducts();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // 搜索商品
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredProducts = [...allProducts];
+            } else {
+                filteredProducts = allProducts.filter(product => 
+                    product.title.toLowerCase().includes(searchTerm) ||
+                    product.category.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            currentPage = 1;
+            renderAllProducts();
+        }
+
+        // 应用筛选
+        function applyFilters() {
+            const categoryFilter = document.getElementById('category-filter').value;
+            const priceFilter = document.getElementById('price-filter').value;
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            
+            filteredProducts = allProducts.filter(product => {
+                // 搜索筛选
+                const matchesSearch = searchTerm === '' || 
+                    product.title.toLowerCase().includes(searchTerm) ||
+                    product.category.toLowerCase().includes(searchTerm);
+                
+                // 分类筛选
+                const matchesCategory = categoryFilter === '' || product.category === categoryFilter;
+                
+                // 价格筛选
+                let matchesPrice = true;
+                if (priceFilter !== '') {
+                    const price = product.price;
+                    switch (priceFilter) {
+                        case '0-100':
+                            matchesPrice = price >= 0 && price <= 100;
+                            break;
+                        case '100-500':
+                            matchesPrice = price > 100 && price <= 500;
+                            break;
+                        case '500-1000':
+                            matchesPrice = price > 500 && price <= 1000;
+                            break;
+                        case '1000+':
+                            matchesPrice = price > 1000;
+                            break;
+                    }
+                }
+                
+                return matchesSearch && matchesCategory && matchesPrice;
+            });
+            
+            currentPage = 1;
+            renderAllProducts();
+        }
+
+        // 清除筛选
+        function clearFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('price-filter').value = '';
+            
+            filteredProducts = [...allProducts];
+            currentPage = 1;
+            renderAllProducts();
+        }
+
+        // 填充分类选项
+        function populateCategoryFilter() {
+            const categories = [...new Set(allProducts.map(product => product.category))];
+            const categoryFilter = document.getElementById('category-filter');
+            
+            // 清除现有选项（除了"所有分类"）
+            categoryFilter.innerHTML = '<option value="">所有分类</option>';
+            
+            // 添加分类选项
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categoryFilter.appendChild(option);
+            });
+        }
+
+        // FAQ切换
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('active');
+        }
+
+        // 搜索框回车事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchProducts();
+                    }
+                });
+            }
+        });
+
+        // 初始化网站
+        async function initWebsite() {
+            try {
+                // 显示加载状态
+                console.log('正在加载产品数据...');
+                
+                // 获取产品数据
+                allProducts = await fetchProductsFromSheets();
+                filteredProducts = [...allProducts];
+                
+                console.log(`成功加载 ${allProducts.length} 个产品`);
+                
+                // 填充分类筛选器
+                populateCategoryFilter();
+                
+                // 渲染推荐商品
+                renderFeaturedProducts();
+                
+                // 渲染所有商品（如果当前在商品页面）
+                if (document.getElementById('products').classList.contains('active')) {
+                    renderAllProducts();
+                }
+                
+            } catch (error) {
+                console.error('初始化失败:', error);
+                
+                // 显示错误信息
+                const featuredGrid = document.getElementById('featured-grid');
+                if (featuredGrid) {
+                    featuredGrid.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+                }
+                
+                const productsGrid = document.getElementById('products-grid');
+                if (productsGrid) {
+                    productsGrid.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+                }
+            }
+        }
+
+        // 页面导航增强版本
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示目标页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新导航状态
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // 如果切换到商品页面且还没有渲染商品，则渲染
+            if (pageId === 'products' && allProducts.length > 0) {
+                renderAllProducts();
+            }
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', initWebsite);
+
+        // 确保DOM加载完成后绑定事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 重新绑定导航事件（防止初始化顺序问题）
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+        });
+    </script>
