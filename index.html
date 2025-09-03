@@ -777,7 +777,8 @@
 
         // 渲染推荐商品
         function renderFeaturedProducts() {
-            const featuredProducts = allProducts.filter(product => product.featured).slice(0, 6);
+                // 不限制数量，显示所有推荐商品
+            const featuredProducts = allProducts.filter(product => product.featured);
             const grid = document.getElementById('featured-grid');
             
             if (featuredProducts.length === 0) {
