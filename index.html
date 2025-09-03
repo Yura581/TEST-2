@@ -511,7 +511,7 @@
             <section class="featured-products">
                 <h2 class="section-title">FEATURED ITEMS</h2>
                 <div class="products-grid" id="featured-grid">
-                    <div class="loading">正在加载推荐商品...</div>
+                    <div class="loading">Loading...</div>
                 </div>
             </section>
 
@@ -534,28 +534,28 @@
             <section class="filters-section">
                 <div class="filters-container">
                     <div class="search-bar">
-                        <input type="text" class="search-input" id="search-input" placeholder="搜索商品名称、关键词...">
-                        <button class="search-btn" onclick="searchProducts()">搜索</button>
+                        <input type="text" class="search-input" id="search-input" placeholder="Search product name or keywords...">
+                        <button class="search-btn" onclick="searchProducts()">Search</button>
                     </div>
                     <div class="filter-options">
                         <div class="filter-group">
-                            <label>分类:</label>
+                            <label>Category:</label>
                             <select class="filter-select" id="category-filter">
-                                <option value="">所有分类</option>
+                                <option value="">All Category</option>
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label>价格:</label>
+                            <label>Price:</label>
                             <select class="filter-select" id="price-filter">
-                                <option value="">所有价格</option>
+                                <option value="">All Price</option>
                                 <option value="0-100">¥0 - ¥100</option>
                                 <option value="100-500">¥100 - ¥500</option>
                                 <option value="500-1000">¥500 - ¥1000</option>
                                 <option value="1000+">¥1000+</option>
                             </select>
                         </div>
-                        <button class="search-btn" onclick="applyFilters()">应用筛选</button>
-                        <button class="btn-secondary" onclick="clearFilters()">清除筛选</button>
+                        <button class="search-btn" onclick="applyFilters()">Apply Filter</button>
+                        <button class="btn-secondary" onclick="clearFilters()">Clear Filters</button>
                     </div>
                 </div>
             </section>
@@ -563,14 +563,14 @@
             <!-- 商品展示区域 -->
             <section class="featured-products">
                 <div class="products-grid" id="products-grid">
-                    <div class="loading">正在加载商品数据...</div>
+                    <div class="loading">Loading...</div>
                 </div>
                 
                 <!-- 分页 -->
                 <div class="pagination" id="pagination">
-                    <button id="prev-btn" onclick="changePage(-1)">上一页</button>
-                    <span id="page-info">第 1 页 / 共 1 页</span>
-                    <button id="next-btn" onclick="changePage(1)">下一页</button>
+                    <button id="prev-btn" onclick="changePage(-1)">Previous</button>
+                    <span id="page-info"> Page 1/ Total 1 Pages</span>
+                    <button id="next-btn" onclick="changePage(1)">Next</button>
                 </div>
             </section>
         </div>
@@ -630,7 +630,7 @@
 
     <!-- 页脚 -->
     <footer class="footer">
-        <p>&copy; 2025 商品展示网站. 保留所有权利.</p>
+        <p>&copy; 2025 This website does not sell any physical products, it is for educational purposes only, and the website owner reserves all rights..</p>
     </footer>
 
     <script>
