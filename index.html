@@ -814,7 +814,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             
-            pageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+            pageInfo.textContent = `Page ${currentPage}  / Total ${totalPages} Pages`;
             prevBtn.disabled = currentPage <= 1;
             nextBtn.disabled = currentPage >= totalPages;
         }
