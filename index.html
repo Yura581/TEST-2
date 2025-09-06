@@ -100,7 +100,6 @@
 
         /* 首页样式 */
         .hero-section {
-            margin-top: 114px; /* 专门为hero区域添加顶部边距 */
             padding: 0;
             text-align: center;
         }
@@ -271,7 +270,6 @@
             padding: 2rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
-            margin-top: 114px; /* 使用实际导航栏高度 */
         }
 
         .filters-container {
@@ -450,11 +448,6 @@
             .nav-links {
                 gap: 1rem;
             }
-            
-            /* 手机端导航栏高度调整 */
-            .hero-section {
-                margin-top: 150px; /* 手机端导航栏更高，需要更多顶部边距 */
-            }
 
             .hero-content h1 {
                 font-size: 2rem;
@@ -506,10 +499,6 @@
 
             .filter-options {
                 justify-content: center;
-            }
-
-            .filters-section {
-                margin-top: 150px; /* 添加手机端适配 */
             }
 
             .social-links {
@@ -1085,6 +1074,33 @@
             // 滚动到顶部
             window.scrollTo(0, 0);
         }
+
+        // 动态调整导航栏高度
+        function adjustLayoutForNavbar() {
+            const navbar = document.querySelector('.navbar');
+            const heroSection = document.querySelector('.hero-section');
+            const filtersSection = document.querySelector('.filters-section');
+
+            if (navbar) {
+                const navbarHeight = navbar.offsetHeight;
+
+                if (heroSection) {
+                    heroSection.style.marginTop = navbarHeight + 'px';
+                }
+                if (filtersSection) {
+                    filtersSection.style.marginTop = navbarHeight + 'px';
+                }
+            }
+        }
+        
+        // 页面加载时执行
+        window.addEventListener('load', adjustLayoutForNavbar);
+
+        // 窗口大小变化时重新计算
+        window.addEventListener('resize', adjustLayoutForNavbar);
+        
+        // 现有的初始化代码保持不变
+        window.addEventListener('load', initWebsite);
 
         // 页面加载完成后初始化
         window.addEventListener('load', initWebsite);
