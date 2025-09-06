@@ -442,6 +442,36 @@
                 padding: 0 1rem;
             }
 
+            /* 修改2: 减少手机端分类、标题、价格、按钮之间的空隙 */
+            .product-info {
+                padding: 0.8rem; /* 从1.2rem减少到0.8rem */
+            }
+
+            .product-category {
+                margin-bottom: 0.15rem; /* 从0.25rem减少到0.15rem */
+            }
+
+            .product-title {
+                margin-bottom: 0.3rem; /* 从0.5rem减少到0.3rem */
+            }
+
+            .product-price {
+                margin-bottom: 0.3rem; /* 从0.5rem减少到0.3rem */
+            }
+
+            .product-buttons {
+                gap: 0.3rem; /* 从0.5rem减少到0.3rem */
+            }
+
+            /* 修改3: 减小手机端按钮文字大小，确保文字在一行内 */
+            .btn {
+                padding: 0.6rem 0.8rem; /* 减少按钮的内边距 */
+                font-size: 0.85rem; /* 减小字体大小，从默认减小到0.85rem */
+                white-space: nowrap; /* 确保文字不换行 */
+                overflow: hidden; /* 隐藏溢出文字 */
+                text-overflow: ellipsis; /* 文字过长时显示省略号 */
+            }
+
             .search-bar {
                 flex-direction: column;
             }
