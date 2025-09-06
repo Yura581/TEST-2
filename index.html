@@ -54,6 +54,22 @@
             display: none; /* 隐藏原来的文字logo样式，改用下面的图片样式 */
         }
 
+        /* Logo容器 - 固定大小防止变形 */
+        .logo-container {
+            width: 50px; /* 固定logo宽度 */
+            height: 40px; /* 固定logo高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden; /* 隐藏溢出部分 */
+        }
+
+        .logo-container:hover {
+            transform: scale(1.1); /* 鼠标悬停logo时放大10% */
+}
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -488,7 +504,9 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">FINDS WEBSITE</a>
-            <img src="images/logo.png" alt="网站Logo" class="logo-img" onclick="goToHome()"> <!-- 替换文字logo为图片logo，添加点击跳转首页功能 -->
+            <div class="logo-container" onclick="goToHome()">
+                <img src="images/logo.png" alt="网站Logo" class="logo-img"> <!-- 替换文字logo为图片logo，添加点击跳转首页功能 -->
+            </div>
             <ul class="nav-links">
                 <li><a href="#" class="nav-link active" data-page="home">HOME</a></li>
                 <li><a href="#" class="nav-link" data-page="products">ALL ITEMS</a></li>
