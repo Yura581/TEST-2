@@ -92,12 +92,13 @@
 
         /* 主内容区 */
         .main-content {
-            margin-top: 80px;
+            margin-top: 0; /* 移除banner顶部和横幅的边距 */
             min-height: calc(100vh - 80px);
         }
 
         /* 首页样式 */
         .hero-section {
+            margin-top: 80px; /* 专门为hero区域添加顶部边距 */
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             padding: 0;
             text-align: center;
@@ -430,6 +431,11 @@
 
             .nav-links {
                 gap: 1rem;
+            }
+            
+            /* 手机端导航栏高度调整 */
+            .hero-section {
+                margin-top: 120px; /* 手机端导航栏更高，需要更多顶部边距 */
             }
 
             .hero-content h1 {
