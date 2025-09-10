@@ -655,7 +655,7 @@
         <!-- FAQ页面 -->
         <div id="faq" class="page">
             <section class="faq-section">
-                <h1 class="section-title">常见问题</h1>
+                <h1 class="section-title">FAQ</h1>
                 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
@@ -789,12 +789,12 @@
                                 id: product.id || i,
                                 title: product.title,
                                 price: parseFloat(product.price) || 0,
-                                category: product.category || '未分类',
-                                image: product.image || 'https://via.placeholder.com/300x250/667eea/ffffff?text=商品图片',
+                                category: product.category || 'Uncategorized',
+                                image: product.image || 'https://via.placeholder.com/300x250/667eea/ffffff?text=Items Image',
                                 link1: product.link1 || '#',
-                                link1Text: product.link1Text || '查看详情',
+                                link1Text: product.link1Text || 'Buy Now',
                                 link2: product.link2 || '#',
-                                link2Text: product.link2Text || '立即购买',
+                                link2Text: product.link2Text || 'View Details',
                                 featured: product.featured === 'TRUE' || product.featured === '1'
                             });
                         }
@@ -880,7 +880,7 @@
             
             const grid = document.getElementById('products-grid');
             if (pageProducts.length === 0) {
-                grid.innerHTML = '<div class="loading">没有找到匹配的商品</div>';
+                grid.innerHTML = '<div class="loading">No matching items found</div>';
                 return;
             }
             
@@ -1023,13 +1023,13 @@
         async function initWebsite() {
             try {
                 // 显示加载状态
-                console.log('正在加载产品数据...');
+                console.log('Loading items data...');
                 
                 // 获取产品数据
                 allProducts = await fetchProductsFromSheets();
                 filteredProducts = [...allProducts];
                 
-                console.log(`成功加载 ${allProducts.length} 个产品`);
+                console.log(`Successfully loaded ${allProducts.length} items`);
                 
                 // 填充分类筛选器
                 populateCategoryFilter();
@@ -1048,12 +1048,12 @@
                 // 显示错误信息
                 const featuredGrid = document.getElementById('featured-grid');
                 if (featuredGrid) {
-                    featuredGrid.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+                    featuredGrid.innerHTML = '<div class="loading">Loading failed, please refresh the page and try again</div>';
                 }
                 
                 const productsGrid = document.getElementById('products-grid');
                 if (productsGrid) {
-                    productsGrid.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+                    productsGrid.innerHTML = '<div class="loading">Loading failed, please refresh the page and try again</div>';
                 }
             }
         }
