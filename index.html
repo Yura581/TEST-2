@@ -100,6 +100,20 @@
             gap: 2rem;
         }
 
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
         /* SIGN UP NOW 按钮 */
         .signup-btn {
             background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
@@ -114,18 +128,10 @@
             white-space: nowrap;
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
         }
 
         /* 主内容区 */
