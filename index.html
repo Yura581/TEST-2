@@ -357,6 +357,105 @@
             transform: scale(1.05);
         }
 
+        /* 分类标签容器 */
+        .category-tags-container {
+            position: relative;
+        }
+
+        .category-tags {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* 桌面端：2行5列的分类选项 */
+        @media (min-width: 769px) {
+            .category-tags {
+                grid-template-columns: repeat(5, 1fr);
+                max-height: none;
+                overflow: visible;
+            }
+            .category-tags.collapsed {
+                grid-template-rows: repeat(2, 1fr);
+                max-height: calc(2 * (50px + 1rem) - 1rem);
+                overflow: hidden;
+            }
+        }
+        
+        /* 移动端：3行2列的分类选项 */
+        @media (max-width: 768px) {
+            .category-tags {
+                grid-template-columns: repeat(2, 1fr);
+                max-height: none;
+                overflow: visible;
+            }
+            .category-tags.collapsed {
+                grid-template-rows: repeat(3, 1fr);
+                max-height: calc(3 * (50px + 1rem) - 1rem);
+                overflow: hidden;
+            }
+        }
+        
+        /* 分类标签样式 */
+        .category-tag {
+            padding: 12px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            background: white;
+            color: #666;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .category-tag:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        /* 选中分类状态 */
+        .category-tag.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            color: white;
+        }
+        
+        .category-tag.selected:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Load More 按钮 */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .load-more-btn {
+            padding: 12px 30px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .load-more-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
         .filter-options {
             display: flex;
             gap: 1rem;
