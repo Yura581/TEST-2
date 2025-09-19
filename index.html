@@ -1148,23 +1148,6 @@
             renderAllProducts();
         }
 
-        // 填充分类选项
-        function populateCategoryFilter() {
-            const categories = [...new Set(allProducts.map(product => product.category))];
-            const categoryFilter = document.getElementById('category-filter');
-            
-            // 清除现有选项（除了"所有分类"）
-            categoryFilter.innerHTML = '<option value="">All Category</option>';
-            
-            // 添加分类选项
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category;
-                option.textContent = category;
-                categoryFilter.appendChild(option);
-            });
-        }
-
         // FAQ切换
         function toggleFAQ(element) {
             const answer = element.nextElementSibling;
