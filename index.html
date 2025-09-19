@@ -860,6 +860,8 @@
         let filteredProducts = [];
         let currentPage = 1;
         const productsPerPage = 32; // 每页显示12个商品
+        let selectedCategories = []; // 新增JavaScript函数
+        let isExpanded = false;
 
         // Google Sheets配置 - 请替换为你的实际配置
         const SHEET_CONFIG = {
