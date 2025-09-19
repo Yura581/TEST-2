@@ -1192,42 +1192,19 @@
             renderAllProducts();
         }
 
-        // 应用筛选
+        // 应用产品分类筛选
         function applyFilters() {
-            const categoryFilter = document.getElementById('category-filter').value;
-            const priceFilter = document.getElementById('price-filter').value;
             const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
             
             filteredProducts = allProducts.filter(product => {
-                // 搜索筛选
-                const matchesSearch = searchTerm === '' || 
+                const matchesSearch = searchTerm === '' ||
                     product.title.toLowerCase().includes(searchTerm) ||
                     product.category.toLowerCase().includes(searchTerm);
                 
-                // 分类筛选
-                const matchesCategory = categoryFilter === '' || product.category === categoryFilter;
+                const matchesCategory = selectedCategories.includes('All') || 
+                    selectedCategories.includes(product.category);
                 
-                // 价格筛选
-                let matchesPrice = true;
-                if (priceFilter !== '') {
-                    const price = product.price;
-                    switch (priceFilter) {
-                        case '0-100':
-                            matchesPrice = price >= 0 && price <= 100;
-                            break;
-                        case '100-500':
-                            matchesPrice = price > 100 && price <= 500;
-                            break;
-                        case '500-1000':
-                            matchesPrice = price > 500 && price <= 1000;
-                            break;
-                        case '1000+':
-                            matchesPrice = price > 1000;
-                            break;
-                    }
-                }
-                
-                return matchesSearch && matchesCategory && matchesPrice;
+                return matchesSearch && matchesCategory;
             });
             
             currentPage = 1;
@@ -1237,8 +1214,14 @@
         // 清除筛选
         function clearFilters() {
             document.getElementById('search-input').value = '';
-            document.getElementById('category-filter').value = '';
-            document.getElementById('price-filter').value = '';
+            
+            // 重置为选中All
+            selectedCategories = ['All'];
+            document.querySelectorAll('.category-tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+            const allTag = document.querySelector('[data-category="All"]');
+            if (allTag) allTag.classList.add('selected');
             
             filteredProducts = [...allProducts];
             currentPage = 1;
