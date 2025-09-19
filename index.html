@@ -863,6 +863,103 @@
         let selectedCategories = []; // 新增JavaScript函数
         let isExpanded = false;
 
+        // 初始化分类标签
+        function populateCategoryButtons() {
+            const categories = [...new Set(allProducts.map(product => product.category))];
+            const container = document.getElementById('category-tags');
+            
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            categories.forEach((category, index) => {
+                const tag = document.createElement('div');
+                tag.className = 'category-tag';
+                tag.textContent = category;
+                tag.dataset.category = category;
+                tag.onclick = () => toggleCategory(category, tag);
+                container.appendChild(tag);
+            });
+            
+            // 所有产品页面默认选中 "All" 如果存在
+            const allTag = container.querySelector('[data-category="All"]');
+            if (allTag) {
+                toggleCategory('All', allTag);
+            }
+            updateDisplay();
+        }
+        
+        // 切换分类选择（立即生效）
+        function toggleCategory(category, tagElement) {
+            if (category === 'All') {
+                selectedCategories = ['All'];
+                document.querySelectorAll('.category-tag').forEach(tag => {
+                    tag.classList.remove('selected');
+                });
+                tagElement.classList.add('selected');
+            } else {
+                if (selectedCategories.includes('All')) {
+                    selectedCategories = [];
+                    const allTag = document.querySelector('[data-category="All"]');
+                    if (allTag) allTag.classList.remove('selected');
+                }
+                
+                if (selectedCategories.includes(category)) {
+                    selectedCategories = selectedCategories.filter(cat => cat !== category);
+                    tagElement.classList.remove('selected');
+                    
+                    if (selectedCategories.length === 0) {
+                        selectedCategories = ['All'];
+                        const allTag = document.querySelector('[data-category="All"]');
+                        if (allTag) allTag.classList.add('selected');
+                    }
+                } else {
+                    selectedCategories.push(category);
+                    tagElement.classList.add('selected');
+                }
+            }
+            
+            // 立即筛选
+            applyFilters();
+        }
+        
+        // 展开/收起分类
+        function toggleCategories() {
+            const container = document.getElementById('category-tags');
+            const button = document.getElementById('load-more-btn');
+            
+            isExpanded = !isExpanded;
+            
+            if (isExpanded) {
+                container.classList.remove('collapsed');
+                button.textContent = 'Show Less';
+            } else {
+                container.classList.add('collapsed');
+                button.textContent = 'Load More';
+            }
+        }
+        
+        // 更新显示状态
+        function updateDisplay() {
+            const container = document.getElementById('category-tags');
+            const button = document.getElementById('load-more-btn');
+            
+            const isMobile = window.innerWidth <= 768;
+            const defaultCount = isMobile ? 6 : 10;
+            const tags = container.children;
+            const shouldShowLoadMore = tags.length > defaultCount;
+            
+            if (shouldShowLoadMore) {
+                button.style.display = 'block';
+                if (!isExpanded) {
+                    container.classList.add('collapsed');
+                }
+            } else {
+                button.style.display = 'none';
+                container.classList.remove('collapsed');
+            }
+        }
+
         // Google Sheets配置 - 请替换为你的实际配置
         const SHEET_CONFIG = {
             // 替换为你的Google Sheets共享链接中的ID
