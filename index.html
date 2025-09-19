@@ -670,29 +670,18 @@
                         <input type="text" class="search-input" id="search-input" placeholder="Search product name or keywords...">
                         <button class="search-btn" onclick="searchProducts()">Search</button>
                     </div>
-                    <div class="filter-options">
-                        <div class="filter-group">
-                            <label>Category:</label>
-                            <select class="filter-select" id="category-filter">
-                                <option value="">All Category</option>
-                            </select>
+                    
+                    <div class="category-tags-container">
+                        <div class="category-tags collapsed" id="category-tags">
+                            <!-- 分类标签会动态生成 -->
                         </div>
-                        <div class="filter-group">
-                            <label>Price:</label>
-                            <select class="filter-select" id="price-filter">
-                                <option value="">All Price</option>
-                                <option value="0-100">¥0 - ¥100</option>
-                                <option value="100-500">¥100 - ¥500</option>
-                                <option value="500-1000">¥500 - ¥1000</option>
-                                <option value="1000+">¥1000+</option>
-                            </select>
+                        <div class="load-more-container">
+                            <button class="load-more-btn" id="load-more-btn" onclick="toggleCategories()">Load More</button>
                         </div>
-                        <button class="search-btn" onclick="applyFilters()">Apply Filter</button>
-                        <button class="btn-secondary" onclick="clearFilters()">Clear Filters</button>
                     </div>
                 </div>
             </section>
-
+            
             <!-- 商品展示区域 -->
             <section class="featured-products">
                 <div class="products-grid" id="products-grid">
