@@ -234,15 +234,16 @@
             background: #f0f0f0;
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .product-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* 保证完整显示，不裁剪 */
+            position: absolute;  /* 让图片定位到容器内部 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中 */
+            width: 100%;   /* 以宽度为基准，铺满 */
+            height: auto;  /* 高度自适应，不裁剪 */
+            object-fit: contain; /* 保证完整显示 */
         }
 
         .product-info {
